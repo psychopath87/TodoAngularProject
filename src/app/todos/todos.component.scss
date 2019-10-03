@@ -1,0 +1,80 @@
+.main-container {
+  background-color: khaki;
+  padding: 15px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.header-text {
+  color: white;
+}
+
+.text-khaki {
+  color: khaki;
+}
+
+.text-maroon{
+    color: maroon;
+}
+
+.container-header {
+  background-color: maroon;
+  padding: 12px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.right-search {
+  float: right;
+}
+
+.user-list:hover {
+  background-color: blue;
+}
+
+.button-left {
+  float: left;
+}
+
+.button-right {
+  float: right;
+}
+
+.table-center {
+  font-family: arial, sans-serif;
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+}
+
+.thead-color {
+  background-color: maroon;
+  color: white;
+}
+
+.text-size-small {
+  font-size: 12px;
+}
+
+td,
+th {
+  text-align: left;
+  padding: 8px;
+}
+
+button {
+  border-radius: 4px;
+  padding: 4px;
+}
+
+.btn-update {
+  background-color: lightgreen;
+  color: white;
+  padding: 8px;
+}
+
+.btn-delete {
+  background-color: red;
+  color: white;
+  padding: 8px;
+}

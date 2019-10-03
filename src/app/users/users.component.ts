@@ -19,7 +19,7 @@ export class UsersComponent implements OnInit {
     
   }
 
-  userData = [
+userData = [
     {
       id: "1",
       firstName: "Ted Ian",

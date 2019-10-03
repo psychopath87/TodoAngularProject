@@ -1,72 +1,76 @@
-.main-container {
-    background-color: khaki;
-    padding: 15px;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
-  }
+@import "~bootstrap/dist/css/bootstrap.css";
+body{
+    background-color: lightgray;
+}
+// .main-container {
+//     background-color: khaki;
+//     padding: 15px;
+//     border-bottom-left-radius: 8px;
+//     border-bottom-right-radius: 8px;
+//   }
   
-  .header-text{
-      color: white;
-  }
+//   .header-text{
+//       color: white;
+//   }
   
-  .container-header {
-      background-color: blue;
-      padding: 12px;
-      border-top-left-radius: 8px;
-      border-top-right-radius: 8px;
-  }
+//   .container-header {
+//       background-color: blue;
+//       padding: 12px;
+//       border-top-left-radius: 8px;
+//       border-top-right-radius: 8px;
+//   }
   
-  .right-search {
-    float: right;
-  }
+//   .right-search {
+//     float: right;
+//   }
   
-  .button-left{
-      float: left;
-  }
+//   .button-left{
+//       float: left;
+//   }
   
-  .button-right{
-      float: right;
-  }
+//   .button-right{
+//       float: right;
+//   }
   
-  .table-center {
-    font-family: arial, sans-serif;
-    width: 100%;
-    border-collapse: collapse;
-    background-color: white;
-  }
+//   .table-center {
+//     font-family: arial, sans-serif;
+//     width: 100%;
+//     border-collapse: collapse;
+//     background-color: white;
+//   }
   
-  .thead-color{
-      background-color: blue;
-      color: white;
-  }
+//   .thead-color{
+//       background-color: blue;
+//       color: white;
+//   }
   
-  .text-size-small{
-      font-size: 12px;
-  }
+//   .text-size-small{
+//       font-size: 12px;
+//   }
   
-  td,th {
-    text-align: left;
-    padding: 8px;
-  }
+//   td,th {
+//     text-align: left;
+//     padding: 8px;
+//   }
   
-  button{
-      border-radius: 4px;
-      padding: 4px;
-  }
+//   button{
+//       border-radius: 4px;
+//       padding: 4px;
+//   }
   
-  .btn-update{
-      background-color: lightgreen;
-      color: white;
-      padding: 8px;
-  }
+//   .btn-update{
+//       background-color: lightgreen;
+//       color: white;
+//       padding: 8px;
+//   }
   
-  .btn-delete{
-      background-color: red;
-      color: white;
-      padding: 8px;
-  }
+//   .btn-delete{
+//       background-color: red;
+//       color: white;
+//       padding: 8px;
+//   }
   
-  .todo-list:hover{
-      background-color: maroon;
-  }
+//   .todo-list:hover{
+//       background-color: maroon;
+//   }
   
