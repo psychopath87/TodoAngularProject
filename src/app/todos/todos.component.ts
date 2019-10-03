@@ -19,10 +19,13 @@ export class TodosComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe((paramMap : ParamMap) => {
       const userId = paramMap.get('userId');
-      this.filteredData = this.todoData.filter((todo) => {
-        return todo.owner_id === userId;
-      });
-
+      if(userId){
+        this.filteredData = this.todoData.filter((todo) => {
+          return todo.owner_id === userId;
+        });
+      }else{
+        this.filteredData = this.todoData;
+      }
     });
   }
 

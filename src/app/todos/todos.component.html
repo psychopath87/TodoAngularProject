@@ -1,67 +1,73 @@
-<div class="container-header">
-  <span class="text-khaki">{{ title }}</span>
-  <button class="button-right user-list"><a href="/users">User List</a></button>
-</div>
-<div class="main-container">
-  <br />
-  <button class="button-left"><a href="#">New Todo</a></button>
-  <input
-    type="search"
-    placeholder="Search..."
-    class="right-search"
-    [(ngModel)]="searchText"
-    (change)="onSearch()"
-  /><br /><br />
-  <span *ngIf="filteredData.length === 0">No result</span>
-  <table class="table-center" *ngIf="filteredData.length > 0">
-    <thead>
-      <tr class="thead-color">
-        <th class="text-khaki">#</th>
-        <th class="text-khaki">Name</th>
-        <th class="text-khaki">Description</th>
-        <th class="text-khaki">Status</th>
-        <th class="text-khaki">Owner</th>
-        <th class="text-khaki">Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let todo of filteredData">
-        <td>{{ todo.id }}</td>
-        <td>{{ todo.name }}</td>
-        <td>{{ todo.description }}</td>
-        <td>{{ todo.status }}</td>
-        <td><a routerLink="/user-details/{{ todo.owner_id }}">{{ todo.owner }}</a></td>
-        <td>
-          <button class="btn-update">
-            <a (click)="onUpdate(todo)">Edit</a>
-          </button>
-          <!-- <button onclick="document.getElementById('edit').style.display='block'" class="btn-update">Edit</button> -->
-          <button class="btn-delete">
-            <a (click)="onDelete(todo)">Delete</a>
-          </button>
-        </td>
-      </tr>
-    </tbody>
-    <!-- <tr>
-      <td>2</td>
-      <td>Daily Task</td>
-      <td>Develop fullstack web app</td>
-      <td>ON_GOING</td>
-      <td><a href="todoowner1.html">Java Full Stack</a></td>
-      <td>
-        <button class="btn-update"><a href="/todoupdate.html">Edit</a></button>
-        <button class="btn-delete">
-          <a href="/deletetodo.html">Delete</a>
-        </button>
-      </td>
-    </tr> -->
-  </table>
-
-  <br />
-  <!-- <button><span>&lt;</span></button>
-  <span class="text-size-small">Page: 1/2</span>
-  <button><span>&gt;</span></button> -->
-  <div class="text-maroon">
-        Showing {{ filteredData.length }} results of {{ todoData.length }}.
+<div class="container">
+    <div class="card mt-2 mb-2">
+      <div class="card-header bg-success">
+        <div class="row mt-2">
+          <h2 class="text-white">
+            {{ title }}
+          </h2>
+          <div class="col mb-2 d-flex justify-content-end">
+            <a class="btn btn-primary border-dark" routerLink="/users">
+              Users List
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row mb-2">
+          <div class="col d-flex justify-content-start">
+            <a routerLink="/newtodo" class="btn btn-success">New Todo</a>
+          </div>
+          <div class="col-3 d-flex justify-content-end">
+            <input
+              type="search"
+              placeholder="Search..."
+              class="form-control"
+              [(ngModel)]="searchText"
+              (change)="onSearch()"
+            />
+          </div>
+        </div>
+        <div class="row">
+          <span *ngIf="filteredData.length === 0">No result</span>
+        </div>
+        <div class="row container">
+          <table
+            class="table table-striped table-dark table-hover"
+            *ngIf="filteredData.length > 0"
+          >
+            <thead class="thead-dark">
+              <tr class="">
+                <th>#</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Status</th>
+                <th>Owner</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let todo of filteredData">
+                <td>{{ todo.id }}</td>
+                <td>{{ todo.name }}</td>
+                <td>{{ todo.description }}</td>
+                <td>{{ todo.status }}</td>
+                <td><a routerLink="/user-details/{{ todo.owner_id }}">{{ todo.owner}}</a></td>
+                <td>
+                  <a class="btn btn-info" (click)="onUpdate(todo)">Edit</a>
+                  <span>&nbsp;</span>
+                  <a class="btn btn-danger" (click)="onDelete(todo)">Delete</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+  
+          <br />
+          <!-- <button><span>&lt;</span></button>
+                        <span class="text-size-small">Page: 1/2</span>
+                        <button><span>&gt;</span></button> -->
+          Showing {{ filteredData.length }} results of {{ todoData.length }}.
+        </div>
+      </div>
+    </div>
   </div>
-</div>
+  

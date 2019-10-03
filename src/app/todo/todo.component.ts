@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {userData} from '../users/users.component';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-todo',
@@ -7,7 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TodoComponent implements OnInit {
 
-  constructor() { }
+  filteredData:any[];
+  constructor(private router:Router, private activatedRoute:ActivatedRoute) { 
+    this.filteredData = userData;
+  }
 
   ngOnInit() {
   }
