@@ -10,6 +10,8 @@ import { UserdetailsModule } from './userdetails/userdetails.module';
 import { TodoComponent } from './todo/todo.component';
 import { TodoModule } from './todo/todo.module';
 import { NewuserModule } from './newuser/newuser.module';
+import { ModalComponent } from './users/modal/modal.component';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -24,9 +26,13 @@ import { NewuserModule } from './newuser/newuser.module';
     TodosModule,
     UserdetailsModule,
     TodoModule,
-    NewuserModule
+    NewuserModule,
+    NgbModalModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    ModalComponent
+  ]
 })
 export class AppModule { }

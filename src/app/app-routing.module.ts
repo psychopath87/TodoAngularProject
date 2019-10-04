@@ -9,33 +9,24 @@ import { NewuserComponent } from './newuser/newuser.component';
 const routes: Routes=[
     {
         path:'users',
-        component:UsersComponent
+        loadChildren:'./users/users.module#UsersModule'
     },
     {
         path:'todos',
-        component:TodosComponent
-    },
-    {
-        path:'todos/:userId',
-        component:TodosComponent
-    },
-    {
-        path:'user-details/:userId',
-        component:UserdetailsComponent
-    },
-    {
-        path:'newtodo',
-        component:TodoComponent
-    },
-    {
-        path:'newuser',
-        component:NewuserComponent
-    },
-    {
-        path:'',
-        redirectTo:'users',
-        pathMatch:'full'
-    }
+        loadChildren:'./todos/todos.module#TodosModule'
+    }//,
+    // {
+    //     path:'user-details/:userId',
+    //     component:UserdetailsComponent
+    // },
+    // {
+    //     path:'newtodo',
+    //     component:TodoComponent
+    // },
+    // {
+    //     path:'newuser',
+    //     component:NewuserComponent
+    // }
 ];
 
 @NgModule({
