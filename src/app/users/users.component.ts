@@ -95,6 +95,11 @@ import { ModalComponent } from './modal/modal.component';
 })
 export class UsersComponent implements OnInit {
 
+  @Input() firstName;
+  @Input() lastName;
+  @Input() occupation;
+  @Input() profilePicture;
+
   title = 'User List';
 
   searchText: string;
