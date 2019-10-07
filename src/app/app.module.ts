@@ -11,7 +11,8 @@ import { TodoComponent } from './todo/todo.component';
 import { TodoModule } from './todo/todo.module';
 import { NewuserModule } from './newuser/newuser.module';
 import { ModalComponent } from './users/modal/modal.component';
-import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModalModule, NgbModule, NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
+import { DeleteModalComponent } from './users/delete-modal/delete-modal.component';
 
 @NgModule({
   declarations: [
@@ -22,17 +23,11 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    UsersModule,
-    TodosModule,
-    UserdetailsModule,
-    TodoModule,
-    NewuserModule,
-    NgbModalModule
+    NgbModalModule,
+    NgbModule,
+    NgbToastModule
   ],
   providers: [],
-  bootstrap: [AppComponent],
-  entryComponents: [
-    ModalComponent
-  ]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

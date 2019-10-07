@@ -1,18 +1,22 @@
 <div class="container">
-  <div class="card mt-2 mb-2">
-    <div class="card-header bg-primary">
+  <div class="mt-2 mb-2">
+    <div class="container p-2 bg-primary">
       <div class="row mt-2">
-        <h2 class="text-white">{{ title }}</h2>
-        <div class="col mb-2 d-flex justify-content-end">
-          <a class="btn btn-success border-dark" routerLink="/todos">Todo List</a>
+        <div class="col d-flex justify-content-start">
+          <h2 class="text-white">{{ title }}</h2>
+        </div>
+        <div class="col d-flex justify-content-end">
+          <a class="btn btn-success border-dark" routerLink="/todos">
+            Todo List
+          </a>
         </div>
       </div>
     </div>
-    <div class="card-body">
-      <div class="row mb-2">
+    <div class="p-2 bg-white">
+      <div class="row mt-2 mb-2">
         <div class="col d-flex justify-content-start">
           <!-- <a routerLink="/newuser" class="btn btn-primary">New User</a> -->
-          <button class="btn btn-primary" (click)="onUpdate(user)">New User</button>
+          <button class="btn btn-primary" (click)="newUser()">New User</button>
         </div>
         <div class="col-3 d-flex justify-content-end">
           <input

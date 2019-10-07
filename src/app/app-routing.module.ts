@@ -12,6 +12,11 @@ const routes: Routes=[
         loadChildren:'./users/users.module#UsersModule'
     },
     {
+        path:'',
+        redirectTo:'users',
+        pathMatch:'full'
+    },
+    {
         path:'todos',
         loadChildren:'./todos/todos.module#TodosModule'
     }//,

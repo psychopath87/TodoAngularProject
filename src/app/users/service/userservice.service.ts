@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, TemplateRef } from '@angular/core';
 import { User } from '../model/user';
 
 @Injectable({
@@ -102,6 +102,25 @@ export class UserserviceService {
       return x.id == finduser;
     });
   }
+
+  updateUser(user){
+    let finduser = this.getUser(user.id);
+    let index = this.getUsers().indexOf(finduser);
+    this.getUsers()[index] = user;
+  }
   
+  deleteUser(user){
+    let finduser = this.getUser(user.id);
+    let index = this.getUsers().indexOf(finduser);
+    this.getUsers().splice(index,1)[0];
+  }
+
+  addUser(user){
+    var uid:string;
+    uid = (parseInt(this.getUsers()[this.getUsers().length-1].id)+1).toString();
+    console.log(uid);
+    user.id=uid;
+    this.getUsers().push(user);
+  }
 
 }

@@ -1,67 +1,87 @@
 <div class="modal-header">
-    <h4 class="modal-title">Hi there!</h4>
-    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <!-- START -->
-    <div class="container">
-        <div class="row mt-2 mb-3 rounded-bottom">
-          <div class="container">
-            <div class="card">
-              <h2 class="card-header bg-primary text-white">
-                User Details
-              </h2>
-              <div class="row">
-                <div class="col-6">
-                  <img
-                    src="{{ profilePicture }}"
-                    alt=""
-                    srcset=""
-                    class="w-100"
-                  />
-                </div>
-                <div class="col mt-2">
-                  <div class="container">
-                    <div class="row">
-                      <div>
-                        First Name
-                      </div>
-                      <div class="h3 w-100">
-                        {{ firstName }}
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div>
-                        Last Name
-                      </div>
-                      <div class="h3 w-100">
-                        {{ lastName }}
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div>
-                        Occupation
-                      </div>
-                      <div class="h3 w-100">
-                        {{occupation }}
-                      </div>
-                    </div>
-                    <div class="row"></div>
-                    <div class="row">
-                        <a routerLink="/todos" class="btn btn-success">&lt;</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
+  <h4 class="modal-title">{{ modal_title }}</h4>
+  <button
+    type="button"
+    class="close"
+    aria-label="Close"
+    (click)="activeModal.close()"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <!-- START -->
+  <div class="">
+    <div class="">
+      <h4 class=""></h4>
+      <div class="">
+        <div class="justify-content-center">
+          <form>
+            <div class="form-group">
+              <label for="customFile">Profile Picture</label>
+              <input
+                [(ngModel)]="profpic"
+                name="profpic"
+                type="text"
+                class="form-control"
+                id="exampleFormControlInput1"
+                placeholder="First Name"
+                required
+              />
             </div>
-          </div>
+            <div class="form-group">
+              <label for="exampleFormControlInput1">First Name</label>
+              <input
+                [(ngModel)]="firstname"
+                name="firstname"
+                type="text"
+                class="form-control"
+                id="exampleFormControlInput1"
+                placeholder="First Name"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlInput2">Last Name</label>
+              <input
+                [(ngModel)]="lastname"
+                name="lastname"
+                type="text"
+                class="form-control"
+                id="exampleFormControlInput2"
+                placeholder="Last Name"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlInput3">Occupation</label>
+              <input
+                [(ngModel)]="occupy"
+                name="occupy"
+                type="text"
+                class="form-control"
+                id="exampleFormControlInput3"
+                placeholder="Occupation"
+                required
+              />
+            </div>
+          </form>
         </div>
+        <!-- <div class="row">
+            <div class="col">
+              <a (click)="onCancel()" class="btn btn-danger btn-small border-dark">&lt;</a>
+            </div>
+            <div class="col d-flex justify-content-end">
+              <a href="" class="btn btn-success border-dark">&gt;</a>
+            </div>
+          </div> -->
       </div>
-      
-    <!-- END -->
+    </div>
   </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('')">Close</button>
-  </div>
+  <!-- END -->
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="onUpdate()">
+    Submit
+  </button>
+</div>

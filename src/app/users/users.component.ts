@@ -3,6 +3,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { UserserviceService } from './service/userservice.service';
 import { User } from './model/user';
 import { ModalComponent } from './modal/modal.component';
+import { DeleteModalComponent } from './delete-modal/delete-modal.component';
 
 
 // export const userData = [
@@ -106,12 +107,16 @@ export class UsersComponent implements OnInit {
   filteredData: any[];
   userData: any[];
   constructor(public modalService: NgbModal, private userService: UserserviceService){
-    this.userData = userService.getUsers();
-    this.filteredData = this.userData;
+
   }
 
   ngOnInit(){
-    
+    this.fetchAll();
+  }
+
+  fetchAll(){
+    this.userData = this.userService.getUsers();
+    this.filteredData = this.userData;
   }
 
   onSearch(){
@@ -129,20 +134,39 @@ export class UsersComponent implements OnInit {
     }
   }
 
+  newUser(){
+    const modalRef = this.modalService.open(ModalComponent);
+    modalRef.result.then(res => {
+      if(res==="added"){
+        this.fetchAll();
+      }
+    });
+  }
+
   users:User;
   onUpdate(user){
     // this.users = this.userService.getUser(user.id);
     this.users = user;
     // console.log(this.userService.getUser(users.id));
     const modalRef = this.modalService.open(ModalComponent);
-    modalRef.componentInstance.firstName = this.users.firstName;
-    modalRef.componentInstance.lastName = this.users.lastName;
-    modalRef.componentInstance.occupation = this.users.occupation;
-    modalRef.componentInstance.profilePicture = this.users.profilePicture;
+    modalRef.componentInstance.user = user;
+    modalRef.result.then(res => {
+      if(res==="saved"){
+        this.fetchAll();
+      }
+    });
   }
 
   onDelete(user){
-    console.log(user);
+    // console.log(user);
+    this.users = user;
+    const modalRef = this.modalService.open(DeleteModalComponent);
+    modalRef.componentInstance.user = user;
+    modalRef.result.then(res =>{
+      if(res==="deleted"){
+        this.fetchAll();
+      }
+    });
   }
 
 }

@@ -6,11 +6,12 @@ import { RouterModule } from '@angular/router';
 import { UsersRoutingModule } from './users-routing.module';
 import { ModalComponent } from './modal/modal.component';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { DeleteModalComponent } from './delete-modal/delete-modal.component';
 
 
 
 @NgModule({
-  declarations: [UsersComponent, ModalComponent],
+  declarations: [UsersComponent, ModalComponent, DeleteModalComponent],
   imports: [
     CommonModule,
     FormsModule,
