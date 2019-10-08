@@ -191,6 +191,8 @@ export class UsersComponent implements OnInit {
     this.users = user;
     const modalRef = this.modalService.open(DeleteModalComponent);
     modalRef.componentInstance.user = user;
+    modalRef.componentInstance.firstName = user.firstName;
+    modalRef.componentInstance.lastName = user.lastName;
     modalRef.result.then(res =>{
       if(res==="deleted"){
         this.fetchAll();

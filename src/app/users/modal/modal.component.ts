@@ -4,6 +4,7 @@ import { UserserviceService } from '../service/userservice.service';
 import { User } from '../model/user';
 import { stringify } from '@angular/compiler/src/util';
 import { ToastService } from 'src/app/service/toast.service';
+import { TodosService } from 'src/app/todos/service/todos-service.service';
 
 @Component({
   selector: 'app-modal',
@@ -22,7 +23,8 @@ export class ModalComponent implements OnInit {
   // updatedUser:User;
 
   constructor(public activeModal: NgbActiveModal, 
-    private userService: UserserviceService, private toastService: ToastService) { }
+    private userService: UserserviceService, 
+    private toastService: ToastService) { }
 
   ngOnInit() {
     this.modal_title=this.user?"Edit User":"Create New User";

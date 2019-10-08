@@ -1,0 +1,94 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{ modal_title }}</h4>
+  <button
+    type="button"
+    class="close"
+    aria-label="Close"
+    (click)="activeModal.close()"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <!-- START -->
+  <div class="">
+    <div class="">
+      <h4 class=""></h4>
+      <div class="">
+        <div class="justify-content-center">
+          <form>
+            <div class="form-group">
+              <label for="customFile">Name</label>
+              <input
+                [(ngModel)]="name"
+                name="name"
+                type="text"
+                class="form-control"
+                id="exampleFormControlInput1"
+                placeholder="Task Name"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Description</label>
+              <input
+                [(ngModel)]="description"
+                name="description"
+                type="text"
+                class="form-control"
+                id="exampleFormControlInput1"
+                placeholder="Description"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlSelect1">Status</label>
+              <select
+                class="form-control"
+                [(ngModel)]="status"
+                name="status"
+                id="exampleFormControlSelect1"
+              >
+                <option value="FINISHED">FINISHED</option>
+                <option value="UNFINISHED">UNFINISHED</option>
+                <option value="PENDING">PENDING</option>
+                <option value="ON_GOING">ON_GOING</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Owner ID</label>
+              <input
+                [(ngModel)]="owner_id"
+                name="owner_id"
+                type="number"
+                min="1"
+                class="form-control"
+                id="exampleFormControlInput1"
+                placeholder="Owner ID"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Owner Name</label>
+              <input
+                [(ngModel)]="owner"
+                name="owner"
+                type="text"
+                class="form-control"
+                id="exampleFormControlInput1"
+                placeholder="Owner Name"
+                required
+              />
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- END -->
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="onUpdate()">
+    Submit
+  </button>
+</div>

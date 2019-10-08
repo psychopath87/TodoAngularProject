@@ -17,7 +17,6 @@
     <div class="p-2 bg-white">
       <div class="row mt-2 mb-2">
         <div class="col d-flex justify-content-start">
-          <!-- <a routerLink="/newuser" class="btn btn-primary">New User</a> -->
           <button class="btn btn-primary" (click)="newUser()">New User</button>
         </div>
         <div class="col-3 d-flex justify-content-end">
@@ -65,9 +64,6 @@
         </table>
 
         <br />
-        <!-- <button><span>&lt;</span></button>
-                    <span class="text-size-small">Page: 1/2</span>
-                    <button><span>&gt;</span></button> -->
         <ngb-pagination
           [pageSize]="itemsPerPage"
           [collectionSize]="collectionSize"

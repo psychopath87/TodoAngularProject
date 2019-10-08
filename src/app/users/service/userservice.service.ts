@@ -123,7 +123,6 @@ export class UserserviceService {
   addUser(user){
     var uid:string;
     uid = (parseInt(this.getUsers()[this.getUsers().length-1].id)+1).toString();
-    console.log(uid);
     user.id=uid;
     this.getUsers().push(user);
   }

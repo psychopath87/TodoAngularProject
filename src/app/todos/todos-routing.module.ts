@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { Routes, RouterModule } from '@angular/router';
 import { TodosComponent } from './todos.component';
+import { ModalComponent } from './modal/modal.component';
+import { DeleteModalComponent } from './delete-modal/delete-modal.component';
 
 const routes: Routes = [
     { 
@@ -17,7 +19,11 @@ const routes: Routes = [
 
 @NgModule({
     imports:[RouterModule.forChild(routes)],
-    exports:[RouterModule]
+    exports:[RouterModule],
+    entryComponents: [
+        ModalComponent,
+        DeleteModalComponent
+      ]
 })
 
 export class TodoRoutingModule{}

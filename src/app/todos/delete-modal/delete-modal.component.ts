@@ -1,9 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Todos } from '../model/todos';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { User } from '../model/user';
-import { UserserviceService } from '../service/userservice.service';
+import { UserserviceService } from 'src/app/users/service/userservice.service';
 import { ToastService } from 'src/app/service/toast.service';
-import { TodosService } from 'src/app/todos/service/todos-service.service';
+import { TodosService } from '../service/todos-service.service';
 
 @Component({
   selector: 'app-delete-modal',
@@ -13,10 +13,8 @@ import { TodosService } from 'src/app/todos/service/todos-service.service';
 export class DeleteModalComponent implements OnInit {
 
   @Input()
-  user:User;
-
+  todo:Todos;
   constructor(public activeModal: NgbActiveModal, 
-    private userService:UserserviceService, 
     private toastService:ToastService,
     private todoService:TodosService) { }
 
@@ -24,8 +22,7 @@ export class DeleteModalComponent implements OnInit {
   }
 
   onDelete(){
-    this.userService.deleteUser(this.user);
-    this.todoService.deleteTodoByUserId(this.user.id);
+    this.todoService.deleteTodo(this.todo);
     this.activeModal.close("deleted");
     this.toastService.showError();
   }

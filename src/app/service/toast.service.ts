@@ -25,17 +25,27 @@ export class ToastService {
       autohide: false
     });
   }
+
+  showPrimary() {
+    this.show('Successfully Added!', {
+      classname: 'bg-primary text-light p-1',
+      delay: 2000 ,
+      autohide: true,
+      headertext: 'Toast Header'
+    });
+  }
  
   showSuccess() {
-    this.show('New User Added!', {
+    this.show('Successfully Added!', {
       classname: 'bg-success text-light p-1',
       delay: 2000 ,
       autohide: true,
       headertext: 'Toast Header'
     });
   }
+  
   showError() {
-    this.show('User Profile Deleted!', {
+    this.show('Deleted Successfully!', {
       classname: 'bg-danger text-light p-1',
       delay: 9999 ,
       autohide: true,
