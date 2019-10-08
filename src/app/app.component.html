@@ -2,8 +2,8 @@
   <ngb-toast
     *ngFor="let toast of toastService.toasts"
     [class]="toast.classname"
-    [autohide]="false"
-    [delay]="1000000"
+    [autohide]="true"
+    [delay]="5000"
     (hide)="toastService.remove(toast)"
   >
     {{ toast.textOrTpl || "" }}

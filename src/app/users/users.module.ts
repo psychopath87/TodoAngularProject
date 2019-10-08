@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { UsersRoutingModule } from './users-routing.module';
 import { ModalComponent } from './modal/modal.component';
-import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModalModule, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { DeleteModalComponent } from './delete-modal/delete-modal.component';
 
 
@@ -17,7 +17,8 @@ import { DeleteModalComponent } from './delete-modal/delete-modal.component';
     FormsModule,
     RouterModule,
     UsersRoutingModule,
-    NgbModalModule
+    NgbModalModule,
+    NgbPaginationModule
   ]
 })
 export class UsersModule { }

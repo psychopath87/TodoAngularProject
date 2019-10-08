@@ -97,6 +97,11 @@ export class UserserviceService {
     return uData;
   }
 
+  getUsersPaginate(page_size:number, page_number:number){
+    --page_number;
+    return this.getUsers().slice(page_number * page_size,(page_number+1) * page_size);
+  }
+
   getUser(finduser){
     return this.user = this.getUsers().find(x =>{
       return x.id == finduser;

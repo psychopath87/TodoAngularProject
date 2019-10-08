@@ -4,6 +4,8 @@ import { UserserviceService } from './service/userservice.service';
 import { User } from './model/user';
 import { ModalComponent } from './modal/modal.component';
 import { DeleteModalComponent } from './delete-modal/delete-modal.component';
+import { createOfflineCompileUrlResolver } from '@angular/compiler';
+import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 
 
 // export const userData = [
@@ -106,17 +108,37 @@ export class UsersComponent implements OnInit {
   searchText: string;
   filteredData: any[];
   userData: any[];
-  constructor(public modalService: NgbModal, private userService: UserserviceService){
+
+  itemsPerPage = this.activatedRoute.snapshot.queryParamMap.has('size')?parseInt(this.activatedRoute.snapshot.queryParamMap.get('size')):5;
+  currentPage = this.activatedRoute.snapshot.queryParamMap.has('page')?parseInt(this.activatedRoute.snapshot.queryParamMap.get('page')):1;
+  collectionSize :number;
+
+  constructor(public modalService: NgbModal, 
+    private userService: UserserviceService, 
+    private activatedRoute:ActivatedRoute,
+    private router:Router){
 
   }
 
   ngOnInit(){
     this.fetchAll();
+
   }
 
   fetchAll(){
-    this.userData = this.userService.getUsers();
+    this.userData = this.userService.getUsersPaginate(this.itemsPerPage, this.currentPage);
+    this.collectionSize = this.userService.getUsers().length;
     this.filteredData = this.userData;
+    this.router.navigate(["/users"],{
+      queryParams: {
+        page:this.currentPage,
+        size:this.itemsPerPage
+      }
+    });
+  }
+
+  paginate(event){
+    this.fetchAll();
   }
 
   onSearch(){
@@ -124,6 +146,13 @@ export class UsersComponent implements OnInit {
     const searchText = this.searchText.toLowerCase();
 
     if(this.searchText){
+      this.router.navigate(["/users"],{
+        queryParams: {
+          q:this.searchText,
+          page:this.currentPage,
+          size:10
+        }
+      });
       this.filteredData = this.userData.filter((user) => {
         return user.firstName.toLowerCase().includes(searchText) ||
         user.lastName.toLowerCase().includes(searchText) ||

@@ -27,16 +27,16 @@ export class ToastService {
   }
  
   showSuccess() {
-    this.show('I am a success toast', {
-      classname: 'bg-success text-light',
+    this.show('New User Added!', {
+      classname: 'bg-success text-light p-1',
       delay: 2000 ,
       autohide: true,
       headertext: 'Toast Header'
     });
   }
   showError() {
-    this.show('I am a success toast', {
-      classname: 'bg-danger text-light',
+    this.show('User Profile Deleted!', {
+      classname: 'bg-danger text-light p-1',
       delay: 9999 ,
       autohide: true,
       headertext: 'Error!!!'
@@ -45,7 +45,7 @@ export class ToastService {
  
   showCustomToast(customTpl) {
     this.show(customTpl, {
-      classname: 'bg-info text-light',
+      classname: 'bg-info text-light p-1',
       delay: 3000,
       autohide: true
     });

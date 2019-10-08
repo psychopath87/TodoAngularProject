@@ -43,6 +43,7 @@ export class ModalComponent implements OnInit {
       };
       this.userService.updateUser(updated);
       this.activeModal.close("saved");
+      this.toastService.showCustomToast('Successfully Updated User!');
     }else{
       var newuser:User={
         id:"",
@@ -53,7 +54,7 @@ export class ModalComponent implements OnInit {
       };
       this.userService.addUser(newuser);
       this.activeModal.close("added");
-      this.toastService.showStandard();
+      this.toastService.showSuccess();
     }
   }
 
