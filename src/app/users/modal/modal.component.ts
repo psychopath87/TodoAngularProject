@@ -31,7 +31,7 @@ export class ModalComponent implements OnInit {
     this.firstname=this.user?this.user.firstName:"";
     this.lastname=this.user?this.user.lastName:"";
     this.occupy=this.user?this.user.occupation:"";
-    this.profpic=this.user?this.user.profilePicture:"";
+    this.profpic=this.user?this.user.profile_picture:"";
   }
 
   onUpdate(){
@@ -41,21 +41,21 @@ export class ModalComponent implements OnInit {
         firstName:this.firstname,
         lastName:this.lastname,
         occupation:this.occupy,
-        profilePicture:this.profpic
+        profile_picture:this.profpic
       };
-      this.userService.updateUser(updated);
-      this.activeModal.close("saved");
-      this.toastService.showCustomToast('Successfully Updated User!');
+      //this.userService.updateUser(updated);
+      this.activeModal.close(updated);
+      // this.toastService.showCustomToast('Successfully Updated User!');
     }else{
       var newuser:User={
-        id:"",
         firstName:this.firstname,
         lastName:this.lastname,
         occupation:this.occupy,
-        profilePicture:this.profpic
+        profile_picture:this.profpic
       };
-      this.userService.addUser(newuser);
-      this.activeModal.close("added");
+      // this.userService.addUser(newuser);
+      this.activeModal.close(newuser);
+      console.log(newuser);
       this.toastService.showSuccess();
     }
   }

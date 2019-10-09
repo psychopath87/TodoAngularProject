@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ModalComponent } from './users/modal/modal.component';
 import { NgbModalModule, NgbModule, NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
-import { DeleteModalComponent } from './users/delete-modal/delete-modal.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -18,7 +18,8 @@ import { DeleteModalComponent } from './users/delete-modal/delete-modal.componen
     AppRoutingModule,
     NgbModalModule,
     NgbModule,
-    NgbToastModule
+    NgbToastModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

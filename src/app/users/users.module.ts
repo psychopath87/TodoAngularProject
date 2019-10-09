@@ -7,6 +7,7 @@ import { UsersRoutingModule } from './users-routing.module';
 import { ModalComponent } from './modal/modal.component';
 import { NgbModalModule, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { DeleteModalComponent } from './delete-modal/delete-modal.component';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 
 

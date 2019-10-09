@@ -6,90 +6,11 @@ import { ModalComponent } from './modal/modal.component';
 import { DeleteModalComponent } from './delete-modal/delete-modal.component';
 import { createOfflineCompileUrlResolver } from '@angular/compiler';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
+import { Page } from './model/page';
+import { concat, of } from 'rxjs';
+import { delay, catchError } from 'rxjs/operators';
+import { ToastService } from '../service/toast.service';
 
-
-// export const userData = [
-//   {
-//     id: "1",
-//     firstName: "Ted Ian",
-//     lastName: "Osias",
-//     occupation: "Software Engineer",
-//     profilePicture:
-//       "https://i.pinimg.com/originals/1f/62/51/1f6251d4e9ab99d8bd84a4548a6f902e.jpg"
-//   },
-//   {
-//     id: "2",
-//     firstName: "A",
-//     lastName: "A",
-//     occupation: "Front End",
-//     profilePicture:
-//       "https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fustechportal.com%2Fwp-content%2Fuploads%2F2018%2F09%2FBadBoy-aa0abf31-2fa4-4664-b468-62fcd3876f0f-498x1024.jpg&f=1&nofb=1"
-//   },
-//   {
-//     id: "3",
-//     firstName: "B",
-//     lastName: "B",
-//     occupation: "Back End",
-//     profilePicture:
-//       "https://images.unsplash.com/photo-1559815435-13978747eecd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80"
-//   },
-//   {
-//     id: "4",
-//     firstName: "C",
-//     lastName: "C",
-//     occupation: "Full Stack",
-//     profilePicture:
-//       "https://i.pinimg.com/originals/1f/62/51/1f6251d4e9ab99d8bd84a4548a6f902e.jpg"
-//   },
-//   {
-//     id: "5",
-//     firstName: "D",
-//     lastName: "D",
-//     occupation: "Designer",
-//     profilePicture:
-//       "https://i.pinimg.com/originals/1f/62/51/1f6251d4e9ab99d8bd84a4548a6f902e.jpg"
-//   },
-//   {
-//     id: "6",
-//     firstName: "E",
-//     lastName: "E",
-//     occupation: "Analyst",
-//     profilePicture:
-//       "https://i.pinimg.com/originals/1f/62/51/1f6251d4e9ab99d8bd84a4548a6f902e.jpg"
-//   },
-//   {
-//     id: "7",
-//     firstName: "F",
-//     lastName: "F",
-//     occupation: "Project Manager",
-//     profilePicture:
-//       "https://i.pinimg.com/originals/1f/62/51/1f6251d4e9ab99d8bd84a4548a6f902e.jpg"
-//   },
-//   {
-//     id: "8",
-//     firstName: "G",
-//     lastName: "G",
-//     occupation: "QA Engineer",
-//     profilePicture:
-//       "https://i.pinimg.com/originals/1f/62/51/1f6251d4e9ab99d8bd84a4548a6f902e.jpg"
-//   },
-//   {
-//     id: "9",
-//     firstName: "H",
-//     lastName: "H",
-//     occupation: "Technical Writer",
-//     profilePicture:
-//       "https://i.pinimg.com/originals/1f/62/51/1f6251d4e9ab99d8bd84a4548a6f902e.jpg"
-//   },
-//   {
-//     id: "10",
-//     firstName: "I",
-//     lastName: "I",
-//     occupation: "Junior Programmer",
-//     profilePicture:
-//       "https://i.pinimg.com/originals/1f/62/51/1f6251d4e9ab99d8bd84a4548a6f902e.jpg"
-//   }
-// ];
 
 @Component({
   selector: 'app-users',
@@ -116,7 +37,8 @@ export class UsersComponent implements OnInit {
   constructor(public modalService: NgbModal, 
     private userService: UserserviceService, 
     private activatedRoute:ActivatedRoute,
-    private router:Router){
+    private router:Router,
+    private toastService:ToastService){
 
   }
 
@@ -126,14 +48,17 @@ export class UsersComponent implements OnInit {
   }
 
   fetchAll(){
-    this.userData = this.userService.getUsersPaginate(this.itemsPerPage, this.currentPage);
-    this.collectionSize = this.userService.getUsers().length;
-    this.filteredData = this.userData;
-    this.router.navigate(["/users"],{
-      queryParams: {
-        page:this.currentPage,
-        size:this.itemsPerPage
-      }
+    this.userService.getRestUsers(this.itemsPerPage,this.currentPage)
+    .subscribe((result:Page<User>)=>{
+      this.collectionSize = result.totalElements;
+      this.userData = result.content;
+      this.filteredData = this.userData;
+      this.router.navigate(["/users"],{
+        queryParams: {
+          page:this.currentPage,
+          size:this.itemsPerPage
+        }
+      });
     });
   }
 
@@ -166,8 +91,15 @@ export class UsersComponent implements OnInit {
   newUser(){
     const modalRef = this.modalService.open(ModalComponent);
     modalRef.result.then(res => {
-      if(res==="added"){
-        this.fetchAll();
+      if(res){
+        console.log('EMPTY ID');
+        console.log(res.id);
+        // this.userService.addRestUser(res);
+        console.log(res);
+        this.userService.addRestUser(res).subscribe(() => {
+          this.fetchAll();
+          this.toastService.showSuccess();
+        });
       }
     });
   }
@@ -180,8 +112,11 @@ export class UsersComponent implements OnInit {
     const modalRef = this.modalService.open(ModalComponent);
     modalRef.componentInstance.user = user;
     modalRef.result.then(res => {
-      if(res==="saved"){
-        this.fetchAll();
+      if(res){
+        this.userService.updateRestUser(res).subscribe(() => {
+          this.toastService.showCustomToast('Successfully Updated User!');
+          this.fetchAll();
+        });
       }
     });
   }
