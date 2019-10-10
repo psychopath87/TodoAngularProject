@@ -2,9 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { UserserviceService } from '../service/userservice.service';
 import { User } from '../model/user';
-import { stringify } from '@angular/compiler/src/util';
 import { ToastService } from 'src/app/service/toast.service';
-import { TodosService } from 'src/app/todos/service/todos-service.service';
 
 @Component({
   selector: 'app-modal',
@@ -20,7 +18,6 @@ export class ModalComponent implements OnInit {
   occupy:string;
   profpic:string
   modal_title:string;
-  // updatedUser:User;
 
   constructor(public activeModal: NgbActiveModal, 
     private userService: UserserviceService, 
@@ -43,9 +40,7 @@ export class ModalComponent implements OnInit {
         occupation:this.occupy,
         profile_picture:this.profpic
       };
-      //this.userService.updateUser(updated);
       this.activeModal.close(updated);
-      // this.toastService.showCustomToast('Successfully Updated User!');
     }else{
       var newuser:User={
         firstName:this.firstname,
@@ -53,10 +48,7 @@ export class ModalComponent implements OnInit {
         occupation:this.occupy,
         profile_picture:this.profpic
       };
-      // this.userService.addUser(newuser);
       this.activeModal.close(newuser);
-      console.log(newuser);
-      this.toastService.showSuccess();
     }
   }
 

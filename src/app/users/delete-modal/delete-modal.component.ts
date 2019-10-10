@@ -24,10 +24,7 @@ export class DeleteModalComponent implements OnInit {
   }
 
   onDelete(){
-    // this.userService.deleteUser(this.user);
-    this.todoService.deleteTodoByUserId(this.user.id);
-    this.activeModal.close("deleted");
-    this.toastService.showError();
+    this.activeModal.close(this.user.id);
   }
 
 }

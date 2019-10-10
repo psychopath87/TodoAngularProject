@@ -22,9 +22,10 @@ export class DeleteModalComponent implements OnInit {
   }
 
   onDelete(){
-    this.todoService.deleteTodo(this.todo);
-    this.activeModal.close("deleted");
-    this.toastService.showError();
+    // this.todoService.deleteTodo(this.todo);
+    this.activeModal.close(this.todo);
+    console.log(this.todo);
+    // this.toastService.showError();
   }
 
 }

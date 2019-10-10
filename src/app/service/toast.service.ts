@@ -52,6 +52,15 @@ export class ToastService {
       headertext: 'Error!!!'
     });
   }
+
+  showErrorTodo() {
+    this.show('Error! Owner Does Not Exist!', {
+      classname: 'bg-danger text-light p-1',
+      delay: 9999 ,
+      autohide: true,
+      headertext: 'Error!!!'
+    });
+  }
  
   showCustomToast(customTpl) {
     this.show(customTpl, {

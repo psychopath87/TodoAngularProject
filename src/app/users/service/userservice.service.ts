@@ -23,7 +23,7 @@ export class UserserviceService {
   }
 
   getRestUser(userId:number){
-    return this.httpClient.get<User>(`${environment.API_URL}/${userId}`);
+    return this.httpClient.get<User>(`${environment.API_URL}/users/${userId}`);
   }
 
   addRestUser(user):Observable<User>{
@@ -36,14 +36,14 @@ export class UserserviceService {
     if(!user){
       return;
     }
-    return this.httpClient.put<User>(`${environment.API_URL}/${user.id}`,user);
+    return this.httpClient.put<User>(`${environment.API_URL}/users/${user.id}`,user);
   }
 
   deleteRestUser(userId:number):Observable<User>{
     if(!userId){
       return;
     }
-    return this.httpClient.delete<User>(`${environment.API_URL}/${userId}`);
+    return this.httpClient.delete<User>(`${environment.API_URL}/users/${userId}`);
   }
 
 }

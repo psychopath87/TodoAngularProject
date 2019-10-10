@@ -55,28 +55,27 @@
                 <option value="ON_GOING">ON_GOING</option>
               </select>
             </div>
+            <!-- <div class="form-group">
+              <label for="ownerId">Owner</label>
+              <select
+              class="form-control"
+              [(ngModel)]="owner_id"
+              name="owner_id"
+              id="ownerId"
+            >
+            <option value=""></option>
+              <option *ngFor="let user of uData" value="{{ user.id }}">{{ user.name }}</option>
+            </select>
+            </div> -->
             <div class="form-group">
-              <label for="exampleFormControlInput1">Owner ID</label>
+              <label for="exampleFormControlInput2">Owner</label>
               <input
                 [(ngModel)]="owner_id"
                 name="owner_id"
-                type="number"
-                min="1"
-                class="form-control"
-                id="exampleFormControlInput1"
-                placeholder="Owner ID"
-                required
-              />
-            </div>
-            <div class="form-group">
-              <label for="exampleFormControlInput1">Owner Name</label>
-              <input
-                [(ngModel)]="owner"
-                name="owner"
                 type="text"
                 class="form-control"
-                id="exampleFormControlInput1"
-                placeholder="Owner Name"
+                id="exampleFormControlInput2"
+                placeholder="Owner ID"
                 required
               />
             </div>

@@ -27,8 +27,9 @@ export class UsersComponent implements OnInit {
   title = 'User List';
 
   searchText: string;
-  filteredData: any[];
-  userData: any[];
+  filteredData: User[];
+  userData: User[];
+  filteredLength:number;
 
   itemsPerPage = this.activatedRoute.snapshot.queryParamMap.has('size')?parseInt(this.activatedRoute.snapshot.queryParamMap.get('size')):5;
   currentPage = this.activatedRoute.snapshot.queryParamMap.has('page')?parseInt(this.activatedRoute.snapshot.queryParamMap.get('page')):1;
@@ -47,12 +48,17 @@ export class UsersComponent implements OnInit {
 
   }
 
+  filteredDataLength(){
+    this.filteredLength = this.filteredData.length;
+  }
+
   fetchAll(){
     this.userService.getRestUsers(this.itemsPerPage,this.currentPage)
     .subscribe((result:Page<User>)=>{
       this.collectionSize = result.totalElements;
       this.userData = result.content;
       this.filteredData = this.userData;
+      this.filteredDataLength();
       this.router.navigate(["/users"],{
         queryParams: {
           page:this.currentPage,
@@ -83,8 +89,10 @@ export class UsersComponent implements OnInit {
         user.lastName.toLowerCase().includes(searchText) ||
         user.occupation.toLowerCase().includes(searchText);
       });
+      this.filteredDataLength();
     }else{
       this.filteredData = this.userData;
+      this.filteredDataLength();
     }
   }
 
@@ -92,10 +100,6 @@ export class UsersComponent implements OnInit {
     const modalRef = this.modalService.open(ModalComponent);
     modalRef.result.then(res => {
       if(res){
-        console.log('EMPTY ID');
-        console.log(res.id);
-        // this.userService.addRestUser(res);
-        console.log(res);
         this.userService.addRestUser(res).subscribe(() => {
           this.fetchAll();
           this.toastService.showSuccess();
@@ -106,18 +110,17 @@ export class UsersComponent implements OnInit {
 
   users:User;
   onUpdate(user){
-    // this.users = this.userService.getUser(user.id);
-    this.users = user;
-    // console.log(this.userService.getUser(users.id));
-    const modalRef = this.modalService.open(ModalComponent);
-    modalRef.componentInstance.user = user;
-    modalRef.result.then(res => {
-      if(res){
-        this.userService.updateRestUser(res).subscribe(() => {
-          this.toastService.showCustomToast('Successfully Updated User!');
-          this.fetchAll();
-        });
-      }
+    this.userService.getRestUser(user.id).subscribe((restuser:User) => {
+      const modalRef = this.modalService.open(ModalComponent);
+      modalRef.componentInstance.user = restuser;
+      modalRef.result.then(res => {
+        if(res){
+          this.userService.updateRestUser(res).subscribe(() => {
+            this.toastService.showCustomToast('Successfully Updated User!');
+            this.fetchAll();
+          });
+        }
+      });
     });
   }
 
@@ -129,8 +132,11 @@ export class UsersComponent implements OnInit {
     modalRef.componentInstance.firstName = user.firstName;
     modalRef.componentInstance.lastName = user.lastName;
     modalRef.result.then(res =>{
-      if(res==="deleted"){
-        this.fetchAll();
+      if(res){
+        this.userService.deleteRestUser(res).subscribe(() => {
+          this.toastService.showError();
+          this.fetchAll();
+        });
       }
     });
   }
