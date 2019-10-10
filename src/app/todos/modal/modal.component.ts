@@ -1,6 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Todos } from '../model/todos';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { UserserviceService } from 'src/app/users/service/userservice.service';
+import { Page } from 'src/app/users/model/page';
+import { User } from 'src/app/users/model/user';
 
 @Component({
   selector: 'app-modal',
@@ -16,10 +19,11 @@ export class ModalComponent implements OnInit {
   status:string;
   owner_id:string;
   modal_title:string;
-  @Input()
-  uData:any[];
+  uData:User[];
 
-  constructor(public activeModal: NgbActiveModal) { }
+
+  constructor(public activeModal: NgbActiveModal,
+    private userService:UserserviceService) { }
 
   ngOnInit() {
     this.modal_title = this.todo?"Edit Todo":"Create New Todo";
@@ -27,7 +31,9 @@ export class ModalComponent implements OnInit {
     this.description = this.todo?this.todo.description:"";
     this.status = this.todo?this.todo.status:"";
     this.owner_id = this.todo?this.todo.owner.id:"";
-    this.uData = this.uData;
+    this.userService.getRestUsers(5,1).subscribe((users:Page<User>) => {
+      this.uData = users.content;
+    });
   }
 
   onUpdate(){

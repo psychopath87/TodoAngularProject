@@ -49,13 +49,14 @@
                 name="status"
                 id="exampleFormControlSelect1"
               >
+              <option value="" selected>NONE</option>
                 <option value="FINISHED">FINISHED</option>
                 <option value="UNFINISHED">UNFINISHED</option>
                 <option value="PENDING">PENDING</option>
                 <option value="ON_GOING">ON_GOING</option>
               </select>
             </div>
-            <!-- <div class="form-group">
+            <div class="form-group">
               <label for="ownerId">Owner</label>
               <select
               class="form-control"
@@ -63,21 +64,9 @@
               name="owner_id"
               id="ownerId"
             >
-            <option value=""></option>
-              <option *ngFor="let user of uData" value="{{ user.id }}">{{ user.name }}</option>
+            <option value="" selected>NONE</option>
+              <option *ngFor="let user of uData" [ngValue]="user.id">{{ user.firstName }} {{user.lastName}}</option>
             </select>
-            </div> -->
-            <div class="form-group">
-              <label for="exampleFormControlInput2">Owner</label>
-              <input
-                [(ngModel)]="owner_id"
-                name="owner_id"
-                type="text"
-                class="form-control"
-                id="exampleFormControlInput2"
-                placeholder="Owner ID"
-                required
-              />
             </div>
           </form>
         </div>

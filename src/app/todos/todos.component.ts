@@ -28,7 +28,6 @@ export class TodosComponent implements OnInit {
   searchText: string;
   filteredData: any[];
   todoData: any[];
-  uData: any[];
   filteredLength:number;
 
   itemsPerPage = this.activatedRoute.snapshot.queryParamMap.has("size")
@@ -138,7 +137,6 @@ export class TodosComponent implements OnInit {
     console.log(todo);
     const modalRef = this.modalService.open(ModalComponent);
     modalRef.componentInstance.todo = todo;
-    modalRef.componentInstance.uData = this.uData;
     modalRef.result.then(res => {
       if (res) {
         this.todoService.updateRestTodos(res).subscribe(() => {

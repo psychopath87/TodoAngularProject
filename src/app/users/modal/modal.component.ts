@@ -3,6 +3,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { UserserviceService } from '../service/userservice.service';
 import { User } from '../model/user';
 import { ToastService } from 'src/app/service/toast.service';
+import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 
 @Component({
   selector: 'app-modal',
@@ -19,9 +20,19 @@ export class ModalComponent implements OnInit {
   profpic:string
   modal_title:string;
 
+  myForm: FormGroup;
+
   constructor(public activeModal: NgbActiveModal, 
     private userService: UserserviceService, 
-    private toastService: ToastService) { }
+    private toastService: ToastService,
+    private formBuilder:FormBuilder) { 
+      this.myForm = this.formBuilder.group({
+        firstname:['',[Validators.required,Validators.minLength(5),Validators.maxLength(30)]],
+        lastname:['',[Validators.required,Validators.minLength(5),Validators.maxLength(30)]],
+        occupy:['',[Validators.required,Validators.minLength(5)]],
+        profpic:['',[Validators.required,Validators.minLength(5)]]
+      });
+    }
 
   ngOnInit() {
     this.modal_title=this.user?"Edit User":"Create New User";
@@ -29,6 +40,22 @@ export class ModalComponent implements OnInit {
     this.lastname=this.user?this.user.lastName:"";
     this.occupy=this.user?this.user.occupation:"";
     this.profpic=this.user?this.user.profile_picture:"";
+  }
+
+  get profile():AbstractControl{
+    return this.myForm.get('profpic');
+  }
+  
+  get lname():AbstractControl{
+    return this.myForm.get('lastname');
+  }
+
+  get fname():AbstractControl{
+    return this.myForm.get('firstname');
+  }
+
+  get oc():AbstractControl{
+    return this.myForm.get('occupy');
   }
 
   onUpdate(){

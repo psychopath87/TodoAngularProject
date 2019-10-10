@@ -16,7 +16,7 @@
       <h4 class=""></h4>
       <div class="">
         <div class="justify-content-center">
-          <form>
+          <form [formGroup]="myForm" (ngSubmit)="onUpdate()">
             <div class="form-group">
               <label for="customFile">Profile Picture</label>
               <input
@@ -26,8 +26,19 @@
                 class="form-control"
                 id="exampleFormControlInput1"
                 placeholder="Pictrure URL"
+                formControlName="profpic"
                 required
               />
+              <div *ngIf="profile.hasError('required')">
+                <p class="text-danger">
+                  Field is required
+                </p>
+              </div>
+              <div *ngIf="profile.hasError('minlength')">
+                <p class="text-danger">
+                  Minimum Length is 5
+                </p>
+              </div>
             </div>
             <div class="form-group">
               <label for="exampleFormControlInput1">First Name</label>
@@ -38,8 +49,24 @@
                 class="form-control"
                 id="exampleFormControlInput1"
                 placeholder="First Name"
+                formControlName="firstname"
                 required
               />
+              <div *ngIf="fname.hasError('required')">
+                <p class="text-danger">
+                  Field is required
+                </p>
+              </div>
+              <div *ngIf="fname.hasError('minlength')">
+                <p class="text-danger">
+                  Minimum Length is 5
+                </p>
+              </div>
+              <div *ngIf="fname.hasError('maxlength')">
+                <p class="text-danger">
+                  Maximum Length is 30
+                </p>
+              </div>
             </div>
             <div class="form-group">
               <label for="exampleFormControlInput2">Last Name</label>
@@ -50,8 +77,24 @@
                 class="form-control"
                 id="exampleFormControlInput2"
                 placeholder="Last Name"
+                formControlName="lastname"
                 required
               />
+              <div *ngIf="lname.hasError('required')">
+                <p class="text-danger">
+                  Field is required
+                </p>
+              </div>
+              <div *ngIf="lname.hasError('minlength')">
+                <p class="text-danger">
+                  Minimum Length is 5
+                </p>
+              </div>
+              <div *ngIf="lname.hasError('maxlength')">
+                <p class="text-danger">
+                  Maximum Length is 30
+                </p>
+              </div>
             </div>
             <div class="form-group">
               <label for="exampleFormControlInput3">Occupation</label>
@@ -62,8 +105,24 @@
                 class="form-control"
                 id="exampleFormControlInput3"
                 placeholder="Occupation"
+                formControlName="occupy"
                 required
               />
+              <div *ngIf="oc.hasError('required')">
+                <p class="text-danger">
+                  Field is required
+                </p>
+              </div>
+              <div *ngIf="oc.hasError('minlength')">
+                <p class="text-danger">
+                  Minimum Length is 5
+                </p>
+              </div>
+              <div *ngIf="oc.hasError('maxlength')">
+                <p class="text-danger">
+                  Maximum Length is 30
+                </p>
+              </div>
             </div>
           </form>
         </div>
@@ -81,7 +140,7 @@
   <!-- END -->
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-outline-dark" (click)="onUpdate()">
+  <button type="submit" class="btn btn-outline-dark" [disabled]="!myForm.valid">
     Submit
   </button>
 </div>
