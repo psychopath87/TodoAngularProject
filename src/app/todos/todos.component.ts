@@ -52,15 +52,15 @@ export class TodosComponent implements OnInit {
       const userId = paramMap.get("userId");
       if (userId) {
         this.todoService
-          .getRestTodos(this.itemsPerPage, this.currentPage)
-          .subscribe((todos: Page<Todos>) => {
-            this.collectionSize = todos.totalElements;
-            this.todoData = todos.content;
-            this.filteredData = this.todoData.filter((todo) => {
-              return todo.owner.id == userId;
-            });
-            this.filteredDataLength();
+        .getRestTodos(this.itemsPerPage, this.currentPage, parseInt(userId))
+        .subscribe((todos: Page<Todos>) => {
+          this.collectionSize = todos.totalElements;
+          this.todoData = todos.content;
+          this.filteredData = this.todoData.filter((todo:Todos) => {
+            return todo.owner.id == userId;
           });
+          this.filteredDataLength();
+        });
       } else {
         this.fetchAll();
       }

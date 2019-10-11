@@ -33,7 +33,7 @@ export class ModalComponent implements OnInit {
     this.description = this.todo?this.todo.description:"";
     this.status = this.todo?this.todo.status:"";
     this.owner_id = this.todo?this.todo.owner.id:"";
-    this.userService.getRestUsers(5,1).subscribe((users:Page<User>) => {
+    this.userService.getRestUsers(10,1).subscribe((users:Page<User>) => {
       this.uData = users.content;
     });
     $(function () {
