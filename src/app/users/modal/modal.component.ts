@@ -29,8 +29,8 @@ export class ModalComponent implements OnInit {
       this.myForm = this.formBuilder.group({
         firstname:['',[Validators.required,Validators.minLength(5),Validators.maxLength(30)]],
         lastname:['',[Validators.required,Validators.minLength(5),Validators.maxLength(30)]],
-        occupy:['',[Validators.required,Validators.minLength(5)]],
-        profpic:['',[Validators.required,Validators.minLength(5)]]
+        occupy:['',[Validators.required,Validators.pattern('^([a-zA-Z]{2,40} +[a-zA-Z]{2,40})$')]],
+        profpic:['',[Validators.required,Validators.minLength(5),Validators.pattern('(http(s?):)|([/|.|\w|\s])*\.(?:jpg|png)')]]
       });
     }
 

@@ -5,6 +5,8 @@ import { UserserviceService } from 'src/app/users/service/userservice.service';
 import { Page } from 'src/app/users/model/page';
 import { User } from 'src/app/users/model/user';
 
+declare const $:any;
+
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.component.html',
@@ -33,6 +35,9 @@ export class ModalComponent implements OnInit {
     this.owner_id = this.todo?this.todo.owner.id:"";
     this.userService.getRestUsers(5,1).subscribe((users:Page<User>) => {
       this.uData = users.content;
+    });
+    $(function () {
+      $('.selectpicker').selectpicker();
     });
   }
 

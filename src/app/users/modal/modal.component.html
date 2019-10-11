@@ -16,7 +16,7 @@
       <h4 class=""></h4>
       <div class="">
         <div class="justify-content-center">
-          <form [formGroup]="myForm" (ngSubmit)="onUpdate()">
+          <form [formGroup]="myForm">
             <div class="form-group">
               <label for="customFile">Profile Picture</label>
               <input
@@ -30,13 +30,18 @@
                 required
               />
               <div *ngIf="profile.hasError('required')">
-                <p class="text-danger">
+                <p class="text-danger border border-danger p-1 rounded">
                   Field is required
                 </p>
               </div>
               <div *ngIf="profile.hasError('minlength')">
-                <p class="text-danger">
+                <p class="text-danger border border-danger p-1 rounded">
                   Minimum Length is 5
+                </p>
+              </div>
+              <div *ngIf="profile.hasError('pattern')">
+                <p class="text-danger border border-danger p-1 rounded">
+                  Invalid image URL
                 </p>
               </div>
             </div>
@@ -53,17 +58,17 @@
                 required
               />
               <div *ngIf="fname.hasError('required')">
-                <p class="text-danger">
+                <p class="text-danger border border-danger p-1 rounded">
                   Field is required
                 </p>
               </div>
               <div *ngIf="fname.hasError('minlength')">
-                <p class="text-danger">
+                <p class="text-danger border border-danger p-1 rounded">
                   Minimum Length is 5
                 </p>
               </div>
               <div *ngIf="fname.hasError('maxlength')">
-                <p class="text-danger">
+                <p class="text-danger border border-danger p-1 rounded">
                   Maximum Length is 30
                 </p>
               </div>
@@ -81,17 +86,17 @@
                 required
               />
               <div *ngIf="lname.hasError('required')">
-                <p class="text-danger">
+                <p class="text-danger border border-danger p-1 rounded">
                   Field is required
                 </p>
               </div>
               <div *ngIf="lname.hasError('minlength')">
-                <p class="text-danger">
+                <p class="text-danger border border-danger p-1 rounded">
                   Minimum Length is 5
                 </p>
               </div>
               <div *ngIf="lname.hasError('maxlength')">
-                <p class="text-danger">
+                <p class="text-danger border border-danger p-1 rounded">
                   Maximum Length is 30
                 </p>
               </div>
@@ -109,18 +114,23 @@
                 required
               />
               <div *ngIf="oc.hasError('required')">
-                <p class="text-danger">
+                <p class="text-danger border border-danger p-1 rounded">
                   Field is required
                 </p>
               </div>
               <div *ngIf="oc.hasError('minlength')">
-                <p class="text-danger">
+                <p class="text-danger border border-danger p-1 rounded">
                   Minimum Length is 5
                 </p>
               </div>
               <div *ngIf="oc.hasError('maxlength')">
-                <p class="text-danger">
+                <p class="text-danger border border-danger p-1 rounded">
                   Maximum Length is 30
+                </p>
+              </div>
+              <div *ngIf="oc.hasError('pattern')">
+                <p class="text-danger border border-danger p-1 rounded">
+                  Must contain atleast two words
                 </p>
               </div>
             </div>
@@ -140,7 +150,12 @@
   <!-- END -->
 </div>
 <div class="modal-footer">
-  <button type="submit" class="btn btn-outline-dark" [disabled]="!myForm.valid">
+  <button
+    type="submit"
+    class="btn btn-outline-dark"
+    (click)="onUpdate()"
+    [disabled]="!myForm.valid"
+  >
     Submit
   </button>
 </div>

@@ -9,37 +9,69 @@
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
-<div class="modal-body">
-  <!-- START -->
-  <div class="">
+<form
+  name="form"
+  (ngSubmit)="f.form.valid && onUpdate()"
+  #f="ngForm"
+  novalidate
+>
+  <div class="modal-body">
+    <!-- START -->
     <div class="">
-      <h4 class=""></h4>
       <div class="">
-        <div class="justify-content-center">
-          <form>
+        <h4 class=""></h4>
+        <div class="">
+          <div class="justify-content-center">
             <div class="form-group">
               <label for="customFile">Name</label>
               <input
                 [(ngModel)]="name"
                 name="name"
+                #nametext="ngModel"
                 type="text"
                 class="form-control"
                 id="exampleFormControlInput1"
                 placeholder="Task Name"
+                [ngClass]="{ 'border-danger': nametext.invalid }"
+                [minlength]="5"
+                [maxlength]="100"
                 required
               />
+              <div>{{ name.length }} /100 characters.</div>
+              <div *ngIf="nametext.invalid" class="text-danger">
+                <div *ngIf="nametext.errors.required">
+                  Task Name is required
+                </div>
+              </div>
+              <div *ngIf="f.submitted && nametext.invalid" class="text-danger">
+                <div *ngIf="nametext.errors.minlength">
+                  Must have atleast 5 characters
+                </div>
+              </div>
+              <div *ngIf="f.submitted && nametext.invalid" class="text-danger">
+                <div *ngIf="nametext.errors.maxlength">
+                  Maximum of 100 characters
+                </div>
+              </div>
             </div>
             <div class="form-group">
               <label for="exampleFormControlInput1">Description</label>
-              <input
+              <textarea
                 [(ngModel)]="description"
                 name="description"
+                #descriptiontext="ngModel"
                 type="text"
                 class="form-control"
                 id="exampleFormControlInput1"
                 placeholder="Description"
+                [ngClass]="{ 'border-danger': descriptiontext.invalid }"
                 required
-              />
+              ></textarea>
+              <div *ngIf="descriptiontext.invalid" class="text-danger">
+                <div *ngIf="descriptiontext.errors.required">
+                  Description is required
+                </div>
+              </div>
             </div>
             <div class="form-group">
               <label for="exampleFormControlSelect1">Status</label>
@@ -48,35 +80,60 @@
                 [(ngModel)]="status"
                 name="status"
                 id="exampleFormControlSelect1"
+                #statustext="ngModel"
+                [ngClass]="{ 'border-danger': statustext.invalid }"
+                required
               >
-              <option value="" selected>NONE</option>
+                <option value="" selected disabled>NONE</option>
                 <option value="FINISHED">FINISHED</option>
                 <option value="UNFINISHED">UNFINISHED</option>
                 <option value="PENDING">PENDING</option>
                 <option value="ON_GOING">ON_GOING</option>
               </select>
+              <div *ngIf="statustext.invalid" class="text-danger">
+                <div *ngIf="statustext.errors.required">
+                  Status is required
+                </div>
+              </div>
             </div>
             <div class="form-group">
               <label for="ownerId">Owner</label>
               <select
-              class="form-control"
-              [(ngModel)]="owner_id"
-              name="owner_id"
-              id="ownerId"
-            >
-            <option value="" selected>NONE</option>
-              <option *ngFor="let user of uData" [ngValue]="user.id">{{ user.firstName }} {{user.lastName}}</option>
-            </select>
+                class="selectpicker"
+                data-live-search="true"
+                [(ngModel)]="owner_id"
+                name="owner_id"
+                id="ownerId"
+                #ownertext="ngModel"
+                [ngClass]="{ 'border-danger': ownertext.invalid }"
+                required
+              >
+                <option value="" selected disabled>NONE</option>
+                <option *ngFor="let user of uData" [ngValue]="user.id"
+                  >{{ user.firstName }} {{ user.lastName }}</option
+                >
+              </select>
+              <div *ngIf="ownertext.invalid" class="text-danger">
+                <div *ngIf="ownertext.errors.required">
+                  Owner is required
+                </div>
+              </div>
             </div>
-          </form>
+          </div>
         </div>
       </div>
     </div>
+    <!-- END -->
   </div>
-  <!-- END -->
-</div>
-<div class="modal-footer">
-  <button type="button" class="btn btn-outline-dark" (click)="onUpdate()">
-    Submit
-  </button>
-</div>
+  <div class="modal-footer">
+    <button
+      type="submit"
+      name="submit"
+      id="submit"
+      class="btn btn-outline-dark"
+      [ngClass]="{ disabled: f.form.invalid }"
+    >
+      Submit
+    </button>
+  </div>
+</form>
